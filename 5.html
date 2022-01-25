@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
+Необходимо реализовать функцию:
+mathOperation(arg1, arg2, operation);
+Параметры:
+arg1 - первое число.
+arg2 - второе число.
+operation - строка, которая содержит один символ из: "+", "-", "*", "/".
+Функция mathOperation должна вернуть результат операции, который был передан в
+параметр operation для двух первых аргументов (arg1 и arg2).
+Функция mathOperation должна использовать для вычисления функции из 4 задания.
+
+Примеры вызова функции:
+console.log(mathOperation(5, 3, "+")); // 8
+console.log(mathOperation(5, 3, ":)")); // NaN
+
+Функции mathOperation всегда передаются корректные числа, проверки на NaN,
+Infinity делать не нужно, однако, в случае если был передан некорректный
+аргумент в параметр operation, необходимо вернуть NaN.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+  <script>
+    "use strict";
+    /**
+     * 
+     * @const a - запроc первого число 
+     * @const b - запрос второго числа
+     * @const operation - запрос выполняемого действия с первым и вторым числом
+     */
+    const arg1 = +prompt("Введите значение А");
+    const arg2 = +prompt("Введите значение B");
+    const operation = prompt("Введите знак действия (+ - * /)");
+    /**
+     * @function {name ()} - название функции для выполнения задачи
+     * @const {param} -  задание константы для функции
+     * @return {param} - возврат результата выполнения функции
+     * @console.log {function} - вывод результат действия функции в консоль
+     */
+    function doSum() {
+      const sum = arg1 + arg2;
+      return sum;
+    }
+    console.log(doSum());
+    /**
+     * @function {name ()} - название функции для выполнения задачи
+     * @let {param} -  задание переменной для функции
+     * @if {(param)} - создание условия выполнения операции
+     * @else if {(param)} - создание альтернативного условия выполнения операции
+     * @return {param} - возврат результата выполнения функции
+     * @console.log (function {name ()}) - вывод результат действия функции в консоль
+     */
+    function doDiff() {
+      let dif = arg1 - arg2;
+      if (arg1 < arg2) {
+        dif = arg2 - arg1;
+      } else if (arg1 === arg2) {
+        dif = 0;
+      }
+      return dif;
+    }
+    console.log(doDiff());
+    /**
+    * @function {name ()} - название функции для выполнения задачи
+    * @const {param} -  задание константы для функции
+    * @return {param} - возврат результата выполнения функции
+    * @console.log (function {name ()}) - вывод результат действия функции в консоль
+    */
+    function doMulti() {
+      const multi = arg1 * arg2;
+      return multi;
+    }
+    console.log(doMulti());
+    /**
+     * @function {name ()} - название функции для выполнения задачи
+     * @const {param} -  задание константы для функции
+     * @return {param} - возврат результата выполнения функции
+     * @console.log (function {name ()}) - вывод результат действия функции в консоль
+     */
+    function doDiv() {
+      const div = arg1 / arg2;
+      return div;
+    }
+    console.log(doDiv());
+    /**
+     * @function {name ()} - название функции для выполнения задачи
+     * @switch {argument()} - выбор аргумента из возможных для функции к выполнению условия
+     * @case {""} - предоставления полученного аргумента для выполнения условия
+     * @return {function ()} - возврат результата выполнения функции
+     * @console.log (function {name ()}) - вывод результат действия функции в консоль
+     */
+    function mathOperation(arg1, arg2, operation) {
+      switch (operation) {
+        case "+":
+          return doSum();
+        case "-":
+          return doDiff();
+        case "*":
+          return doMulti();
+        case "/":
+          return doDiv();
+      }
+    }
+    console.log(mathOperation(arg1, arg2, operation));
+
+
+  </script>
+</body>
+
+</html>
