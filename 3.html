@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Дан массив products, необходимо цену каждого продукта уменьшить на 15% используя
+метод forEach.
+-->
+  <script>
+    "use strict";
+
+    const products = [
+      {
+        id: 3,
+        price: 200,
+      },
+      {
+        id: 4,
+        price: 900,
+      },
+      {
+        id: 1,
+        price: 1000,
+      },
+    ];
+    /**
+     * @product.forEach - функция перебора массива
+     * @product - массив который подвергается перебору
+     * @ => запуск функции с возвратом результата
+     * @product.price - элемент 'price' массива 'product'
+     * @= присваевание значения для '@product.price' после выполнения условия
+     *  функции
+     * @ product [{price}]  - из массива вычитается 15 %
+     * @ product [{price}] / 100 * 15 - нахождение 15%
+     */
+    products.forEach(products => products.price = (products.price -
+      (products.price / 100) * 15));
+    console.log(products);
+  // Здесь пишем решение, данный комментарий необходимо стереть.
+  </script>
+</body>
+
+</html>
