@@ -35,19 +35,21 @@
 
     function getDigitsOfNumber(number) {
       if (number < 0 || number > 999) {
-        console.log("You enter not valid number");
+        console.error("You enter not valid number");
         return number;
-      } else if (number > 0 || number <= 999) {
+      } else if (Number.isInteger(number)) {
         let num = {};
         num.units = number % 10;
         num.dozens = Math.floor(number / 10) % 10;
         num.hundreds = Math.floor(number / 100) % 10;
         return num;
-      };
-
+      } else if (!Number.isInteger(number)) {
+        console.error('Your number is not Integer')
+      }
     };
     console.log(getDigitsOfNumber(344));
     console.log(getDigitsOfNumber(-344));
+    console.log(getDigitsOfNumber(987.52));
 
 
   // Здесь пишем решение, данный комментарий необходимо стереть.
