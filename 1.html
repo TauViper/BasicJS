@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+  <script>
+    "use strict";
+
+    /**
+     * ES5 стиль
+     * @ProductES5  - создаем объект (имя объекта обязательно с большой буквы!!!)
+     * @(itemName, price) - параметры объекта, через запятую
+     * @this.parameter - создание прототипа для возврата функции в объект
+     * @ProductES5.prototype.discount - создание метода в прототипе
+     * @const apple = new ProductES5('apple', 200) - создаем новый объект apple
+     * @apple.discount() - вызываем объект с заданными параметрами
+     */
+
+    function ProductES5(itemName, price) {
+      this.itemName = itemName;
+      this.price = price;
+
+    }
+    ProductES5.prototype.discount = function () {
+      let make25Discount = ((this.price / 100) * 25)
+      console.log(`${this.itemName} по цене ${this.price}
+       со скидкой 25% составляет ${make25Discount}`);
+    };
+    const apple = new ProductES5('apple', 200);
+    apple.discount();
+
+    /**
+     * ES6 стиль
+     * @class ProductES6  - создаем объект (имя объекта 
+     обязательно с большой буквы!!!)
+     * @constructor(itemName, price) - конструктор объекта, через запятую
+     * @this.parameter - создание прототипа для возврата функции в объект
+     * @discount = function () - создание прототипа с функцией
+      в объекте ProductES6
+     * @const apple = new ProductES6('mango', 150) - создаем новый объект mango
+     * @mango.discount() - вызываем объект с заданными параметрами
+     */
+
+    class ProductES6 {
+      constructor(itemName, price) {
+        this.itemName = itemName;
+        this.price = price;
+      };
+
+      discount = function () {
+        let make25Discount = ((this.price / 100) * 25)
+        console.log(`${this.itemName} по цене ${this.price}
+         со скидкой 25% составляет ${make25Discount}`);
+      };
+
+    }
+
+    const mango = new ProductES6('mango', 150);
+    mango.discount();
+
+
+  </script>
+</body>
+
+</html>

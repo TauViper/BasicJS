@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для поста в социальной сети.
+Названия: `PostES5` для es5 стиля и `PostES6` для es6 стиля.
+Пост должен хранить:
+1. Автора поста (имени достаточно).
+2. Текст поста.
+3. Дату и время последнего изменения поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Каждому экземпляру объекта должен быть доступен метод `edit`, который будет
+менять текст поста.
+
+---
+
+Необходимо создать функцию-конструктор/класс для закрепленного поста в
+социальной сети.
+Названия: `AttachedPostES5` для es5 стиля и `AttachedPostES6` для es6 стиля.
+Закрепленный пост должен наследоваться от обычного поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Закрепленный пост должен иметь свойство `highlighted`, в котором по умолчанию
+будет лежать значение false (это свойство будет обозначать, будет ли наш
+закрепленный пост подсвечен).
+У экземпляров объекта закрепленного поста должен быть метод с названием
+`makeTextHighlighted`, который сделает так, чтобы наш пост стал подсвеченным
+(будет менять свойство `highlighted`).
+
+---
+
+Подсказки:
+1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения
+поста", это значит что если пост кто-то изменит (например вызовет какой-то
+метод, который изменит что-то в посте), дата и время последнего изменения
+поста также должна измениться.
+3. Выполняйте все по порядку, не стоит пытаться сделать все сразу, иначе можно
+что-нибудь пропустить.
+4. Если непонятно условие - задайте вопрос.
+-->
+  <script>
+    "use strict";
+
+    /**
+     * ES5 стиль
+     * @PostES5  - создаем объект (имя объекта обязательно с большой буквы!!!)
+     * @(name, text) - параметры объекта, через запятую
+     * @this.parameter - создание прототипа для возврата функции в объект
+     * @PostES5.prototype.post - создание метода в прототипе
+     * @new Date().toLocaleDateString() - вывод текущей даты
+     * @console.log - вывести результат функции в консоль
+     * @const test = new PostES5('Oraz', 'текст') - создаем новый объект test
+     * @test.post() - вызываем объект с заданными параметрами
+     */
+    function PostES5(name, text) {
+      this.name = name;
+      this.text = text;
+    }
+    PostES5.prototype.post = function () {
+      let date = new Date().toLocaleDateString();
+      console.log(`этот пост от ${this.name} c текстом '${this.text}' от ${date}`);
+    };
+
+    const test = new PostES5('Oraz', 'текст который может быть изменен при' +
+      'изменение этого параметра к константе test ');
+    test.post();
+
+    /**
+     * ES6 стиль
+     * @class PostES6  - создаем объект (имя объекта обязательно
+     *  с большой буквы!!!)
+     * @constructor(name, text) - конструктор объекта, через запятую
+     * @this.parameter - создание прототипа для возврата функции в объект
+     * @post2 = function () - создание прототипа с функцией в объекте PostES6
+     * @let date = new Date() - создаем переменную вывода текущей даты
+     * @ .toLocaleDateString () - локальная дата выводиться в строку
+     * @test2.post2() - вызываем объект с заданными параметрами
+     */
+    class PostES6 {
+      constructor(name, text) {
+        this.name = name;
+        this.text = text;
+      };
+      post2() {
+        let date = new Date().toLocaleDateString();
+        console.log(`этот пост от ${this.name} c текстом '${this.text}' от ${date}`);
+      };
+    }
+
+    const test2 = new PostES6('Oraz', 'текст который может быть изменен' +
+      'при изменение этого параметра к константе test2 для PostES6');
+    test2.post2();
+
+    /**
+     * ES5 стиль
+     * @AttachedPostES5  - создаем объект (имя объекта 
+     * обязательно с большой буквы!!!)
+     * PostES5.call(this, .., ...,) - вызываем метод из PostES5 
+     * с подстановкой this
+     * @(name, text) - параметры объекта, через запятую
+     * @this.parameter - создание прототипа для возврата функции в объект
+     * AttachedPostES5.prototype = Object.create(PostES5.prototype) - создание
+     * объекта в прототипе путем заимствования метода из PostES5
+     * AttachedPostES5.prototype.constructor = AttachedPostES5 - создание 
+     * собственного конструктора
+     * @AttachedPostES5.prototype.high  - создание собственного метода
+     * @const test3 = new AttachedPostES5('Ali', "lorem") - создаем новый
+     * объект test3
+     * @test3.post() - вызываем объект с заданными параметрами
+     */
+    function AttachedPostES5(name, text) {
+      PostES5.call(this, name, text);
+      this.highlighted = false;
+    }
+    AttachedPostES5.prototype = Object.create(PostES5.prototype);
+    AttachedPostES5.prototype.constructor = AttachedPostES5;
+    AttachedPostES5.prototype.high = (() => this.highlighted = true);
+    const test3 = new AttachedPostES5('Ali', "lorem");
+    test3.post();
+
+    /**
+     * ES6 стиль
+     * @class AttachedPostES6  - создаем объект (имя объекта 
+     * обязательно с большой буквы!!!)
+     * extends PostES6 - вызываем метод из PostES6
+     * @constructor(name, text) - конструктор объекта, через запятую
+     * @super(name, text) -  вызываем метод из PostES6 с подстановкой this
+     * @high() - создание прототипа с функцией в объекте PostES6
+     * @this.highlighted = true - изменение значения переменной
+     * @test4.post2() - вызываем объект с заданными параметрами
+     */
+    class AttachedPostES6 extends PostES6 {
+      constructor(name, text) {
+        super(name, text);
+      };
+      high() {
+        this.highlighted = true;
+      };
+    }
+    const test4 = new AttachedPostES6('Tau', "lorem inpus");
+    test4.post2();
+
+
+  </script>
+</body>
+
+</html>
