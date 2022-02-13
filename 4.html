@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Необязательное задание.
+
+Необходимо реализовать функцию-конструктор Rectangle.
+-->
+  <script>
+    "use strict";
+
+    /**
+     * Returns the rectangle object with width and height parameters and
+     * getArea() method.
+     *
+     * @param {number} width - Rectangle width
+     * @param {number} height - Rectangle height
+     * @return {Rectangle}
+     */
+    function Rectangle(width, height) {
+      this.width = width;
+      this.height = height;
+    }
+    Rectangle.prototype.getArea = function () {
+      return (`${this.width}` * `${this.height}`);
+    }
+
+    class RectangleES6 {
+      constructor(width, height) {
+        this.width = width;
+        this.height = height;
+      };
+
+      getAreaES6() {
+        return (`${this.width}` * `${this.height}`);
+      }
+    }
+
+
+
+    function RectangleHerit(width, height) {
+      Rectangle.call(this, width, height);
+    }
+    RectangleHerit.prototype = Object.create(Rectangle.prototype);
+    RectangleHerit.prototype.constructor = RectangleHerit;
+
+
+
+    class RectangleHeritES6 extends RectangleES6 {
+      constructor(width, height) {
+        super(width, height);
+      };
+    }
+
+
+    const r = new Rectangle(10, 20);
+    console.log(r.width); // 10
+    console.log(r.height); // 20
+    console.log(r.getArea()); // 200F
+
+
+    const t = new RectangleES6(20, 20);
+    console.log(t.width); // 10
+    console.log(t.height); // 20
+    console.log(t.getAreaES6()); // 200
+
+    const h = new RectangleHerit(20, 30);
+    console.log(h.width); // 10
+    console.log(h.height); // 20
+    console.log(h.getArea()); // 200
+
+
+
+    const hES6 = new RectangleHeritES6(30, 30);
+    console.log(hES6.height); // 20
+    console.log(hES6.width); // 10
+    console.log(hES6.getAreaES6()); // 200
+  </script>
+</body>
+
+</html>
